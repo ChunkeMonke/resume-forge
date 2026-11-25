@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Editor · Resume Forge</title>
+  <meta name="description" content="Write, design and download a polished resume. Free, private, and no account needed.">
+  <meta name="theme-color" content="#f4efe6">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/resume.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="app">
+  <a class="skip" href="#panel">Skip to editor</a>
+
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Resume Forge home">
+      <img class="brand-mark" src="assets/favicon.svg" alt="">
+      <span class="brand-name">Resume <em>Forge</em></span>
+    </a>
+    <span class="save-state" id="save-state" aria-live="polite"><span class="dot"></span><span class="txt">Saved on this device</span></span>
+    <div class="tb-actions">
+      <div class="tb-group">
+        <button class="icon-btn" id="btn-undo" type="button" aria-label="Undo" title="Undo (Ctrl+Z)" disabled></button>
+        <button class="icon-btn" id="btn-redo" type="button" aria-label="Redo" title="Redo (Ctrl+Shift+Z)" disabled></button>
+      </div>
+      <button class="btn btn-ghost tb-hide-sm" id="btn-import" type="button"></button>
+      <button class="btn btn-ghost tb-hide-sm" id="btn-export" type="button"></button>
+      <button class="icon-btn tb-more" id="btn-more" type="button" aria-label="More actions" aria-haspopup="menu" aria-expanded="false"></button>
+      <button class="btn btn-primary" id="btn-pdf" type="button"></button>
+    </div>
+    <div class="menu" id="more-menu" role="menu" hidden>
+      <button role="menuitem" type="button" data-act="import"></button>
+      <button role="menuitem" type="button" data-act="export"></button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel" id="panel" tabindex="-1" aria-label="Editor">
+      <div class="tabs" role="tablist" aria-label="Editor sections">
+        <button role="tab" id="tab-content" aria-controls="pane-content" aria-selected="true" type="button">Content</button>
+        <button role="tab" id="tab-design" aria-controls="pane-design" aria-selected="false" type="button" tabindex="-1">Design</button>
+        <span class="tab-ink" aria-hidden="true"></span>
+      </div>
+      <div class="pane" id="pane-content" role="tabpanel" aria-labelledby="tab-content"></div>
+      <div class="pane" id="pane-design" role="tabpanel" aria-labelledby="tab-design" hidden></div>
+    </aside>
+
+    <div class="divider" id="divider" role="separator" aria-orientation="vertical" aria-label="Resize editor" tabindex="0"></div>
+
+    <section class="stage" id="stage" aria-label="Resume preview">
+      <div class="stage-bar">
+        <span class="fit-pill" id="fit-pill"><span class="dot"></span><span class="txt">Fits on one page</span></span>
+        <span class="stage-hint">Click anything on the page to edit it</span>
+      </div>
+      <div class="canvas" id="canvas">
+        <div class="scaler" id="scaler"><div class="pages" id="pages"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mobile-switch" aria-label="View">
+    <button type="button" data-view="edit" aria-pressed="true">Edit</button>
+    <button type="button" data-view="preview" aria-pressed="false">Preview</button>
+  </nav>
+
+  <dialog class="dlg" id="import-dlg" aria-labelledby="import-title">
+    <form method="dialog" class="dlg-x"><button class="icon-btn" aria-label="Close" value="cancel"></button></form>
+    <div class="dlg-body" id="import-body"></div>
+  </dialog>
+
+  <dialog class="dlg dlg-sm" id="confirm-dlg" aria-labelledby="confirm-title">
+    <div class="dlg-body">
+      <h2 class="dlg-title" id="confirm-title"></h2>
+      <p class="dlg-text" id="confirm-text"></p>
+      <div class="dlg-actions">
+        <button class="btn" type="button" data-answer="no">Cancel</button>
+        <button class="btn btn-primary" type="button" data-answer="yes" id="confirm-yes">Continue</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <input type="file" id="file-input" accept=".pdf,.json,.zip,.csv,application/pdf,application/json" multiple hidden>
+  <div id="print-root" aria-hidden="true"></div>
+  <style id="page-style"></style>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

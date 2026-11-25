@@ -1,0 +1,194 @@
+/* Resume page and the five templates. Every size scales with --s (density and fit). */
+
+.rs-page {
+  box-sizing: border-box;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+.rs {
+  --ink: #1b1b1d;
+  --ink-2: #3a3a3e;
+  --ink-3: #5c5c62;
+  --hair: #d9d6d0;
+  font-family: var(--font);
+  font-size: calc(var(--s) * 10.2px);
+  line-height: 1.4;
+  color: var(--ink);
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+  font-variant-numeric: lining-nums;
+}
+.rs * { box-sizing: border-box; }
+.rs p, .rs h1, .rs h2, .rs ul { margin: 0; }
+
+/* ---------- header ---------- */
+.rs-head { padding-bottom: calc(var(--s) * 10px); }
+.rs-name {
+  font-size: calc(var(--s) * 25px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.rs-role {
+  margin-top: calc(var(--s) * 3px);
+  font-size: calc(var(--s) * 11.4px);
+  font-weight: 500;
+  color: var(--accent);
+}
+.rs-contact {
+  margin-top: calc(var(--s) * 7px);
+  font-size: calc(var(--s) * 9.3px);
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.rs-ci { white-space: nowrap; }
+.rs-sep::before { content: "·"; margin: 0 0.55em; color: var(--ink-3); }
+
+/* ---------- sections ---------- */
+.rs-sec { margin-top: calc(var(--s) * 12px); }
+.rs-cont { margin-top: 0; }
+.rs-h {
+  font-size: calc(var(--s) * 9.6px);
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: calc(var(--s) * 3.5px);
+  margin-bottom: calc(var(--s) * 6.5px);
+  border-bottom: 1px solid var(--hair);
+}
+.rs-para { color: var(--ink-2); }
+
+.rs-entry { margin-bottom: calc(var(--s) * 8px); break-inside: avoid; }
+.rs-entry:last-child { margin-bottom: 0; }
+.rs-entry-line { margin-bottom: calc(var(--s) * 2.5px); }
+.rs-when { display: none; }
+.rs-line { display: flex; justify-content: space-between; align-items: baseline; gap: 1.2em; }
+.rs-title { font-weight: 600; color: var(--ink); }
+.rs-strong { font-weight: 600; }
+.rs-issuer { color: var(--ink-2); }
+.rs-date, .rs-loc {
+  flex: none;
+  white-space: nowrap;
+  font-size: 0.94em;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.rs-line2 { margin-top: 0.05em; }
+.rs-sub { font-style: italic; color: var(--ink-2); }
+.rs-meta { margin-top: 0.15em; color: var(--ink-2); font-size: 0.96em; }
+
+.rs-bul { margin-top: calc(var(--s) * 3px); padding-left: 1.15em; color: var(--ink-2); }
+.rs-bul li { margin: 0 0 calc(var(--s) * 1.6px); padding-left: 0.15em; }
+.rs-bul li:last-child { margin-bottom: 0; }
+.rs-bul li::marker { color: var(--accent); font-size: 0.9em; }
+
+.rs-skill { margin-bottom: calc(var(--s) * 2px); color: var(--ink-2); }
+.rs-skill:last-child { margin-bottom: 0; }
+.rs-skill-k { font-weight: 600; color: var(--ink); }
+.rs-skill-k::after { content: ": "; }
+
+/* ---------- Classic: centered serif, quiet rules ---------- */
+.t-classic { line-height: 1.38; font-size: calc(var(--s) * 10.9px); }
+.t-classic .rs-head {
+  text-align: center;
+  border-bottom: 3px double var(--ink);
+  padding-bottom: calc(var(--s) * 9px);
+}
+.t-classic .rs-name { font-size: calc(var(--s) * 28px); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+.t-classic .rs-role { color: var(--ink-2); font-style: italic; font-weight: 400; font-size: calc(var(--s) * 12px); }
+.t-classic .rs-h {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: calc(var(--s) * 11px);
+  letter-spacing: 0.16em;
+  border-bottom-color: var(--ink);
+  border-bottom-width: 0.75px;
+}
+.t-classic .rs-title { font-weight: 700; }
+.t-classic .rs-bul li::marker { color: var(--ink); }
+
+/* ---------- Modern: confident sans, accent headings ---------- */
+.t-modern .rs-name { font-size: calc(var(--s) * 27px); font-weight: 700; letter-spacing: -0.022em; }
+.t-modern .rs-head { border-bottom: 2px solid var(--accent); }
+.t-modern .rs-h { border-bottom: 0; padding-bottom: 0; margin-bottom: calc(var(--s) * 5.5px); display: flex; align-items: center; gap: 0.8em; }
+.t-modern .rs-h::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+.t-modern .rs-sub { font-style: normal; font-weight: 500; color: var(--accent); }
+
+/* ---------- Executive: large serif name, accent rule ---------- */
+.t-executive { font-size: calc(var(--s) * 10.6px); }
+.t-executive .rs-head {
+  border-top: calc(var(--s) * 5px) solid var(--accent);
+  padding-top: calc(var(--s) * 14px);
+  border-bottom: 1px solid var(--ink);
+}
+.t-executive .rs-name { font-size: calc(var(--s) * 31px); font-weight: 600; letter-spacing: -0.01em; }
+.t-executive .rs-role { color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.16em; font-size: calc(var(--s) * 9.4px); font-weight: 600; margin-top: calc(var(--s) * 6px); }
+.t-executive .rs-h {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: calc(var(--s) * 13.5px);
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: calc(var(--s) * 5px);
+}
+.t-executive .rs-sec { margin-top: calc(var(--s) * 13px); }
+
+/* ---------- Technical: dense, precise, contact on the right ---------- */
+.t-technical { font-size: calc(var(--s) * 9.9px); line-height: 1.36; }
+.t-technical .rs-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2em;
+  border-bottom: 1.6px solid var(--ink);
+  padding-bottom: calc(var(--s) * 8px);
+}
+.t-technical .rs-name { font-size: calc(var(--s) * 24px); font-weight: 700; letter-spacing: -0.015em; }
+.t-technical .rs-role { color: var(--ink-2); }
+.t-technical .rs-id { flex: none; }
+.t-technical .rs-contact { text-align: right; flex: 0 1 auto; min-width: 0; margin-top: 0; }
+.t-technical .rs-h { color: var(--ink); border-bottom: 1px solid var(--ink); letter-spacing: 0.1em; }
+.t-technical .rs-sec { margin-top: calc(var(--s) * 10px); }
+.t-technical .rs-entry { margin-bottom: calc(var(--s) * 6.5px); }
+.t-technical .rs-skill { display: grid; grid-template-columns: 9.5em 1fr; gap: 0.8em; }
+.t-technical .rs-skill-k::after { content: ""; }
+.t-technical .rs-bul li::marker { content: "▪  "; font-size: 0.75em; color: var(--accent); }
+
+/* ---------- Minimal: date column, airy ---------- */
+.t-minimal { font-size: calc(var(--s) * 10.1px); line-height: 1.45; --col: 20%; }
+.t-minimal .rs-head { padding-bottom: calc(var(--s) * 6px); }
+.t-minimal .rs-name { font-size: calc(var(--s) * 29px); font-weight: 300; letter-spacing: -0.02em; }
+.t-minimal .rs-role { color: var(--accent); font-weight: 400; }
+.t-minimal .rs-sec { margin-top: calc(var(--s) * 14px); }
+.t-minimal .rs-h {
+  border-bottom: 0;
+  padding-bottom: 0;
+  font-size: calc(var(--s) * 8.6px);
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  margin-bottom: calc(var(--s) * 6px);
+}
+.t-minimal .rs-entry { display: grid; grid-template-columns: var(--col) 1fr; column-gap: 1.2em; }
+.t-minimal .rs-when {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9em;
+  color: var(--ink-3);
+  padding-top: 0.1em;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.t-minimal .rs-when-loc { margin-top: 0.1em; }
+.t-minimal .rs-date, .t-minimal .rs-loc { display: none; }
+.t-minimal .rs-para, .t-minimal .rs-skills { padding-left: calc(var(--col) + 1.2em); }
+.t-minimal .rs-title { font-weight: 700; }
+.t-minimal .rs-sub { font-style: normal; }
+.t-minimal .rs-bul { list-style: none; padding-left: 0; }
+.t-minimal .rs-bul li { position: relative; padding-left: 0.95em; }
+.t-minimal .rs-bul li::before { content: "–"; position: absolute; left: 0; color: var(--accent); }
